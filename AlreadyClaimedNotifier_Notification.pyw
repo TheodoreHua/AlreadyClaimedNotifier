@@ -90,7 +90,7 @@ if config["update_check"]:
                 wbopen("https://github.com/TheodoreHua/AlreadyClaimedNotifier/releases/latest")
     else:
         showerror(title="Error",
-                  description="Received status code {} while trying to check for updates.".format(resp.status_code))
+                  message="Received status code {} while trying to check for updates.".format(resp.status_code))
 
 image = Image.open(FILE_DIRECTORY + "/icon.png")
 icon = pystray.Icon("ACN Ver " + VERSION, image, menu=pystray.Menu(pystray.MenuItem("Exit Program", terminate_loop)))
