@@ -30,13 +30,16 @@ def callback():
     while True:
         for comment in reddit.inbox.comment_replies():
             if comment.id not in checked_entries:
-                if comment.body in get_reply() and comment.author.name == "transcribersofreddit":
-                    submission = comment.submission
-                    open_link = askyesno(title="POST IS ALREADY CLAIMED",
-                                         message="WARNING: Post with title {} has already been claimed! Click 'Yes' to open"
-                                                 " the page".format(submission.title))
-                    if open_link:
-                        wbopen("www.reddit.com" + submission.permalink)
+                if comment.author.name == "transcribersofreddit":
+                    for r in claimed_reply:
+                        if comment.body in r:
+                            submission = comment.submission
+                            open_link = askyesno(title="POST IS ALREADY CLAIMED",
+                                                 message="WARNING: Post with title {} has already been claimed! Click 'Yes' to open"
+                                                         " the page".format(submission.title))
+                            if open_link:
+                                wbopen("www.reddit.com" + submission.permalink)
+                            break
                 checked_entries.append(comment.id)
         sleep(config["delay"])
 

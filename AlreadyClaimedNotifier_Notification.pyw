@@ -27,13 +27,17 @@ def callback():
     while True:
         for comment in reddit.inbox.comment_replies():
             if comment.id not in checked_entries:
-                if comment.body in get_reply() and comment.author.name == "transcribersofreddit":
-                    submission = comment.submission
-                    toast.show_toast("POST IS ALREADY CLAIMED",
-                                     "WARNING: Post with title {} has already been claimed! Click this notification to open"
-                                     " the page".format(submission.title), duration=config["notification_duration"],
-                                     icon_path=FILE_DIRECTORY + "/icon.ico", callback_on_click=
-                                     lambda link=submission.permalink: wbopen("www.reddit.com" + link))
+                if comment.author.name == "transcribersofreddit":
+                    for r in claimed_reply:
+                        if comment.body in r:
+                            submission = comment.submission
+                            toast.show_toast("POST IS ALREADY CLAIMED",
+                                             "WARNING: Post with title {} has already been claimed! Click this notification to open"
+                                             " the page".format(submission.title),
+                                             duration=config["notification_duration"],
+                                             icon_path=FILE_DIRECTORY + "/icon.ico", callback_on_click=
+                                             lambda link=submission.permalink: wbopen("www.reddit.com" + link))
+                            break
                 checked_entries.append(comment.id)
         sleep(config["delay"])
 

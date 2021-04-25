@@ -4,10 +4,14 @@
 #  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 # ------------------------------------------------------------------------------
 
+"""
+DO NOT USE AUTO-REFORMAT CODE IN THIS FILE, IT WILL BREAK THE DEFAULT REPLIES.
+"""
+
 import configparser
 import json
-from os import mkdir
-from os.path import isfile, isdir
+from os import mkdir, listdir
+from os.path import isfile, isdir, join
 
 from gvars import DATA_PATH
 
@@ -15,6 +19,14 @@ CONFIG_VALUES = {"delay": "10",
                  "user": "Username",
                  "notification_duration": "15",
                  "update_check": "1"}
+
+DEFAULT_REPLIES = [
+"""I'm sorry, but it looks like someone else has already claimed this post! You can check in with them to see if they need any help, but otherwise I suggest sticking around to see if another post pops up here in a little bit.
+
+
+---
+
+v0.6.0 | This message was posted by a bot. | [FAQ](https://www.reddit.com/r/TranscribersOfReddit/wiki/index) | [Source](https://github.com/GrafeasGroup/tor) | Questions? [Message the mods!](https://www.reddit.com/message/compose?to=%2Fr%2FTranscribersOfReddit&subject=Bot%20Question&message=)"""]
 
 
 def get_praw():
@@ -41,8 +53,11 @@ def get_checked():
 
 
 def get_reply():
-    with open(DATA_PATH + "/data/reply.txt", "r") as f:
-        return f.read()
+    reply_list = []
+    for i in [j for j in listdir(DATA_PATH + "/data/replies") if isfile(join(DATA_PATH + "/data/replies", j))]:
+        with open(DATA_PATH + "/data/replies/" + i, "r") as k:
+            reply_list.append(k.read())
+    return reply_list
 
 
 def file_checked(new_entries: list):
@@ -95,12 +110,8 @@ def assert_data():
     if not isfile(DATA_PATH + "/data/checked.json"):
         with open(DATA_PATH + "/data/checked.json", "w") as f:
             json.dump([], f)
-    if not isfile(DATA_PATH + "/data/reply.txt"):
-        with open(DATA_PATH + "/data/reply.txt", "w") as f:
-            f.write(
-                """I'm sorry, but it looks like someone else has already claimed this post! You can check in with them to see if they need any help, but otherwise I suggest sticking around to see if another post pops up here in a little bit.
-                
-                
-                ---
-                
-                v0.6.0 | This message was posted by a bot. | [FAQ](https://www.reddit.com/r/TranscribersOfReddit/wiki/index) | [Source](https://github.com/GrafeasGroup/tor) | Questions? [Message the mods!](https://www.reddit.com/message/compose?to=%2Fr%2FTranscribersOfReddit&subject=Bot%20Question&message=)""")
+    if not isdir(DATA_PATH + "/data/replies"):
+        mkdir(DATA_PATH + "/data/replies")
+        for i, reply in enumerate(DEFAULT_REPLIES):
+            with open(DATA_PATH + "/data/replies/reply{}.txt".format(i + 1), "w") as f:
+                f.write(reply)
