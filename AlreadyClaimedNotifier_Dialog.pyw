@@ -31,8 +31,8 @@ def callback():
                 if comment.body in get_reply() and comment.author.name == "transcribersofreddit":
                     submission = comment.submission
                     open_link = askyesno(title="POST IS ALREADY CLAIMED",
-                                         description="WARNING: Post with title {} has already been claimed! Click 'Yes' to open"
-                                                     " the page".format(submission.title))
+                                         message="WARNING: Post with title {} has already been claimed! Click 'Yes' to open"
+                                                 " the page".format(submission.title))
                     if open_link:
                         wbopen("www.reddit.com" + submission.permalink)
                 checked_entries.append(comment.id)
