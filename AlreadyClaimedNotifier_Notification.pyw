@@ -7,12 +7,14 @@
 import os
 from time import sleep
 from tkinter import Tk
-from tkinter.messagebox import showerror as _showerror
+from tkinter.messagebox import showerror as _showerror, askyesno as _askyesno
 from webbrowser import open as wbopen
 
 import praw
 import pystray
+import requests
 from PIL import Image
+from packaging import version
 from praw.exceptions import MissingRequiredAttributeException
 from win10toast_click import ToastNotifier
 
@@ -46,6 +48,11 @@ def showerror(*args, **kwargs):
     _showerror(*args, **kwargs)
 
 
+def askyesno(*args, **kwargs):
+    Tk().withdraw()
+    return _askyesno(*args, **kwargs)
+
+
 assert_data()
 config = get_config()
 checked_entries = get_checked()
@@ -65,6 +72,25 @@ else:
     except MissingRequiredAttributeException:
         showerror(title="Credentials Error", message="Missing one or more required credentials")
         exit()
+
+# Check for updates
+if config["update_check"]:
+    # Check GitHub API endpoint
+    resp = requests.get("https://api.github.com/repos/TheodoreHua/ClaimDoneRemover/releases/latest")
+    # Check whether response is a success
+    if resp.status_code == 200:
+        resp_js = resp.json()
+        # Check whether the version number of remote is greater than version number of local (to avoid dev conflict)
+        if version.parse(resp_js["tag_name"][1:]) > version.parse(VERSION):
+            # Ask user whether or not they want to open the releases page
+            yn_resp = askyesno("New Version",
+                               "A new version ({}) is available.\n\nPress yes to open page and no to ignore.\nUpdate "
+                               "checking can be disabled in config.".format(resp_js["tag_name"]))
+            if yn_resp:
+                wbopen("https://github.com/TheodoreHua/AlreadyClaimedNotifier/releases/latest")
+    else:
+        showerror(title="Error",
+                  description="Received status code {} while trying to check for updates.".format(resp.status_code))
 
 image = Image.open(FILE_DIRECTORY + "/icon.png")
 icon = pystray.Icon("ACN Ver " + VERSION, image, menu=pystray.Menu(pystray.MenuItem("Exit Program", terminate_loop)))

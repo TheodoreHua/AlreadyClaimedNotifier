@@ -25,6 +25,8 @@ def get_config():
     for name, value in cfg.items():
         if name in ["delay", "notification_duration"]:
             cfg[name] = int(value)
+        elif name in ["update_check"]:
+            cfg[name] = bool(int(value))
     return cfg
 
 
@@ -53,7 +55,8 @@ def assert_data():
         config = configparser.ConfigParser(allow_no_value=True, comment_prefixes=("#", "l"))
         config["CONFIG"] = {"delay": "10",
                             "user": "Username",
-                            "notification_duration": "15"}
+                            "notification_duration": "15",
+                            "update_check": "1"}
         config["notes"] = {}
         config.set("notes", "; Fill in the above values according to the README")
         with open(DATA_PATH + "/config.ini", "w") as f:
