@@ -87,6 +87,8 @@ if config["update_check"]:
                   message="Received status code {} while trying to check for updates.".format(resp.status_code))
 
 image = Image.open(FILE_DIRECTORY + "/icon.png")
-icon = pystray.Icon("ACN Ver " + VERSION, image, menu=pystray.Menu(pystray.MenuItem("Exit Program", terminate_loop)))
+icon = pystray.Icon("ACN Ver " + VERSION, image, menu=pystray.Menu(pystray.MenuItem("ACN Ver " + VERSION, lambda: None,
+                                                                                    enabled=False),
+                                                                   pystray.MenuItem("Exit Program", terminate_loop)))
 icon.visible = True
 icon.run(setup=lambda icon: callback())
