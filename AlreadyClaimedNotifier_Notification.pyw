@@ -60,7 +60,7 @@ elif OS != "Windows":
     exit()
 else:
     try:
-        reddit = praw.Reddit(user_agent=config["os"] + ":alreadyclaimednotifier:v" + VERSION + "(by u/--B_L_A_N_K--)",
+        reddit = praw.Reddit(user_agent=OS + ":alreadyclaimednotifier:v" + VERSION + "(by u/--B_L_A_N_K--)",
                              **get_praw())
     except MissingRequiredAttributeException:
         showerror(title="Credentials Error", message="Missing one or more required credentials")

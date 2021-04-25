@@ -16,7 +16,7 @@ from PIL import Image
 from praw.exceptions import MissingRequiredAttributeException
 
 from file_handler import get_praw, get_config, get_checked, get_reply, assert_data, file_checked
-from gvars import VERSION, FILE_DIRECTORY
+from gvars import VERSION, FILE_DIRECTORY, OS
 
 
 def askyesno(*args, **kwargs):
@@ -59,7 +59,7 @@ if config["user"] in [None, ""]:
     exit()
 else:
     try:
-        reddit = praw.Reddit(user_agent=config["os"] + ":alreadyclaimednotifier:v" + VERSION + "(by u/--B_L_A_N_K--)",
+        reddit = praw.Reddit(user_agent=OS + ":alreadyclaimednotifier:v" + VERSION + "(by u/--B_L_A_N_K--)",
                              **get_praw())
     except MissingRequiredAttributeException:
         showerror(title="Credentials Error", message="Missing one or more required credentials")
