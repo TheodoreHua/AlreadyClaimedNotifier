@@ -16,8 +16,9 @@ involved with this program and are not liable for any matters relating to it.**
 and Mac (currently the limitation is the method of notification, which is using the Windows 10 notification system). 
 This'll likely get fixed by temporarily using popup warning dialogs instead.**
 
-Also known as ACN, this program removes "claim" and "done" comments after a period of time. It is designed
-with r/TranscribersOfReddit transcribers in mind; specifically those who don't want to summon an angry mod...
+Also known as ACN, this program sends a notification to the user when it detects a comment reply stating that the post
+their doing has already been claimed. It is designed with r/TranscribersOfReddit transcribers in mind; specifically
+those who don't want to summon an angry mod...
 
 ## Installation and Use
 
