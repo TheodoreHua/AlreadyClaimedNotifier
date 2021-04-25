@@ -71,7 +71,7 @@ def assert_data():
                 missing_keys.append(needed_key)
         if len(missing_keys) > 0:
             with open(DATA_PATH + "/config.ini", "w") as f:
-                new_data = oldconfig.copy()
+                new_data = {i:str(j) if i not in ["update_check"] else "1" if j else "0" for i, j in oldconfig.items()}
                 for missing_key in missing_keys:
                     # noinspection PyTypeChecker
                     new_data[missing_key] = CONFIG_VALUES[missing_key]
