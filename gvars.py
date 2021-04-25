@@ -17,7 +17,7 @@ from sys import platform as sysplatform
 home = expanduser("~")
 PLATFORM_LOCATIONS = {"linux": ".config",
                       "darwin": ".config"}
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 FILE_DIRECTORY = dirname(abspath(__file__))
 
 if sysplatform.startswith("win"):
