@@ -92,6 +92,23 @@ Yes....please...anything...
 
 [Attach one (using a link) here, and I'll swap it out](https://github.com/TheodoreHua/AlreadyClaimedNotifier/issues/1)
 
+#### Can I add more variants of replies to check for?
+Yes, you can go to the subfolder `data/replies` 
+([how to get to the data folder](#where-are-the-config-and-data-files-located)) and create a new file (named anything 
+you want, without spaces) and paste the exact raw markdown reply you want to check for in it. By default, it already 
+has 2 replies (post is already claimed, post is already completed). You can find a list of some bot replies 
+[here](https://raw.githubusercontent.com/GrafeasGroup/tor/main/tor/strings/en_US.yml) (You have to copy the reply text 
+then add the footer in with 2 new lines seperating the last line of the response and the `---`. an alternative is to 
+find a comment and open it up in old reddit, pressing the `source` button and copy-pasting the entirety of it into 
+the file).
+
+#### Can I use this to get a reply for the bot can't find my transcription?
+Yes, you can add the can't find a transcript reply following the 
+[instructions](#can-i-add-more-variants-of-replies-to-check-for). Note the notification will still warn you about the 
+post being already claimed instead of saying that it didn't detect your transcription, but it still works in that it 
+sends you a notification. I may add a separate feature that checks for that itself and gives a more appropriate warning,
+however that's a low priority feature as it still works using this method.
+
 #### I messed up something in the configuration settings, and now it won't start/is crashing, what should I do?
 
 Try to look at the error and correct it by editing `config.json` or `praw.ini` by yourself (See below FAQ on where the
