@@ -11,6 +11,11 @@ from os.path import isfile, isdir
 
 from gvars import DATA_PATH
 
+CONFIG_VALUES = {"delay": "10",
+                 "user": "Username",
+                 "notification_duration": "15",
+                 "update_check": "1"}
+
 
 def get_praw():
     config = configparser.ConfigParser()
@@ -53,14 +58,29 @@ def assert_data():
         mkdir(DATA_PATH + "/data")
     if not isfile(DATA_PATH + "/config.ini"):
         config = configparser.ConfigParser(allow_no_value=True, comment_prefixes=("#", "l"))
-        config["CONFIG"] = {"delay": "10",
-                            "user": "Username",
-                            "notification_duration": "15",
-                            "update_check": "1"}
+        config["CONFIG"] = CONFIG_VALUES
         config["notes"] = {}
         config.set("notes", "; Fill in the above values according to the README")
         with open(DATA_PATH + "/config.ini", "w") as f:
             config.write(f)
+    else:
+        oldconfig = get_config()
+        missing_keys = []
+        for needed_key in CONFIG_VALUES.keys():
+            if needed_key not in oldconfig.keys():
+                missing_keys.append(needed_key)
+        if len(missing_keys) > 0:
+            with open(DATA_PATH + "/config.ini", "w") as f:
+                new_data = oldconfig.copy()
+                for missing_key in missing_keys:
+                    # noinspection PyTypeChecker
+                    new_data[missing_key] = CONFIG_VALUES[missing_key]
+                config = configparser.ConfigParser(allow_no_value=True, comment_prefixes=("#", "l"))
+                # noinspection PyTypeChecker
+                config["CONFIG"] = new_data
+                config["notes"] = {}
+                config.set("notes", "; Fill in the above values according to the README")
+                config.write(f)
     if not isfile(DATA_PATH + "/praw.ini"):
         config = configparser.ConfigParser(allow_no_value=True, comment_prefixes=("#", ";"))
         config["credentials"] = {"client_id": "",
