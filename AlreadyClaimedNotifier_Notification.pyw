@@ -17,7 +17,7 @@ from praw.exceptions import MissingRequiredAttributeException
 from win10toast_click import ToastNotifier
 
 from file_handler import get_praw, get_config, get_checked, get_reply, assert_data, file_checked
-from gvars import VERSION, FILE_DIRECTORY
+from gvars import VERSION, FILE_DIRECTORY, OS
 
 
 def callback():
@@ -51,8 +51,12 @@ config = get_config()
 checked_entries = get_checked()
 claimed_reply = get_reply()
 
-if config["os"] in [None, ""] or config["user"] in [None, ""]:
+if config["user"] in [None, ""]:
     showerror(title="Error", message="Missing config values, exiting...")
+    exit()
+elif OS != "Windows":
+    showerror(title="Error, Not Supported", description="The ACN Notification is only supported on Windows, for support"
+                                                        " in other operating systems, use ACN Dialog.")
     exit()
 else:
     try:

@@ -54,7 +54,7 @@ config = get_config()
 checked_entries = get_checked()
 claimed_reply = get_reply()
 
-if config["os"] in [None, ""] or config["user"] in [None, ""]:
+if config["user"] in [None, ""]:
     showerror(title="Error", message="Missing config values, exiting...")
     exit()
 else:
