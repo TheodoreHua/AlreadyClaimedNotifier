@@ -76,7 +76,7 @@ else:
 # Check for updates
 if config["update_check"]:
     # Check GitHub API endpoint
-    resp = requests.get("https://api.github.com/repos/TheodoreHua/ClaimDoneRemover/releases/latest")
+    resp = requests.get("https://api.github.com/repos/TheodoreHua/AlreadyClaimedNotifier/releases/latest")
     # Check whether response is a success
     if resp.status_code == 200:
         resp_js = resp.json()
