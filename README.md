@@ -21,13 +21,13 @@ those who don't want to summon an angry mod...
 `AlreadyClaimedNotifier_Notification.pyw`
 
 - **Is only supported on Windows**
-- Utilizes Window's notification system to show Warnings
+- Utilizes Window's notification system to show warnings
 
 ### ACN Dialog
 `AlreadyClaimedNotifier_Dialog.pyw`
 
 - Is supported on all operating systems
-- Uses a popup warning dialog to show Warnings
+- Uses a popup warning dialog to show warnings
 
 ## Installation and Use
 
