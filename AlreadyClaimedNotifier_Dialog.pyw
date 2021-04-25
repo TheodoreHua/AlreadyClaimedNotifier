@@ -43,6 +43,7 @@ def callback():
 
 def terminate_loop():
     file_checked(checked_entries)
+    # noinspection PyProtectedMember
     os._exit(0)
 
 
