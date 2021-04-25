@@ -1,4 +1,4 @@
-# Claim/Done Remover
+# Already Claimed Notifier
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/TheodoreHua/AlreadyClaimedNotifier/graphs/commit-activity)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/theodorehuadev@gmail.com)  
@@ -12,13 +12,22 @@
 **This is an unofficial program and is not officially endorsed by the Transcribers of Reddit; they are in no way
 involved with this program and are not liable for any matters relating to it.**
 
-**Currently this program only works on Windows 10, I may edit it slightly to add at least basic functionality on Linux 
-and Mac (currently the limitation is the method of notification, which is using the Windows 10 notification system). 
-This'll likely get fixed by temporarily using popup warning dialogs instead.**
-
 Also known as ACN, this program sends a notification to the user when it detects a comment reply stating that the post
 their doing has already been claimed. It is designed with r/TranscribersOfReddit transcribers in mind; specifically
 those who don't want to summon an angry mod...
+
+## Versions
+### ACN Notification
+`AlreadyClaimedNotifier_Notification.pyw`
+
+- **Is only supported on Windows**
+- Utilizes Window's notification system to show Warnings
+
+### ACN Dialog
+`AlreadyClaimedNotifier_Dialog.pyw`
+
+- Is supported on all operating systems
+- Uses a popup warning dialog to show Warnings
 
 ## Installation and Use
 
@@ -40,11 +49,13 @@ those who don't want to summon an angry mod...
    [Obtaining a Refresh Token](#obtaining-a-refresh-token) section.
 8. Done
 
-Once you're done, just navigate to the folder where `AlreadyClaimedNotifier.pyw` is and run the file. You might run with an IDE you have
-installed, or simply run itself, or you can run it from the command line. On Windows, you do it like this: 
-`python AlreadyClaimedNotifier.pyw`. The application doesn't have a window and instead runs in the background, you can
-see if it's running by looking at the tray and looking for the (horribly drawn) [icon](#icon). You can close the 
-program by right-clicking the icon and clicking Exit Program. If this doesn't work, terminate it in Task Manager.
+Once you're done, just navigate to the folder where `AlreadyClaimedNotifier_Notification.pyw` or 
+`AlreadyClaimedNotifier_Dialog.pyw` is and run the file. You might run with an IDE you have installed, or simply run 
+itself, or you can run it from the command line. On Windows, you do it like this: 
+`python AlreadyClaimedNotifier_Notification.pyw` or `python AlreadyClaimedNotifier_Dialog.pyw`. The application doesn't 
+have a window and instead runs in the background, you can see if it's running by looking at the tray and looking for the
+(horribly drawn) [icon](#icon). You can close the program by right-clicking the icon and clicking Exit Program. If this 
+doesn't work, terminate it in Task Manager.
 
 ## Other Instructions
 
@@ -58,6 +69,7 @@ program by right-clicking the icon and clicking Exit Program. If this doesn't wo
 - ***Notification Duration***: The amount of time the notification shows on your screen in seconds. Note that the 
   program will NOT be checking for new claimed posts while the notification shows.
   - Default: `15`
+  - Is not used on Dialog version however is still required to be filled to avoid parsing errors.
 
 ### Obtaining a Refresh Token
 Run `get_refreshtoken.py` (remember to do this only AFTER you've filled in the `client_id` and `client_secret`, it's 
@@ -84,8 +96,8 @@ Yes....please...anything...
 
 Try to look at the error and correct it by editing `config.json` or `praw.ini` by yourself (See below FAQ on where the
 files are located). If the error cannot be resolved by yourself, delete the `config.json` and/or `praw.ini` files, then
-run `AlreadyClaimedNotifier.pyw`. The program will re-create the files, and you'll be good to go. You **WILL** have to 
-re-setup the config and PRAW files.
+run ACN. The program will re-create the files, and you'll be good to go. You **WILL** have to re-setup the config and 
+PRAW files.
 
 #### Where are the config and data files located?
 
