@@ -55,7 +55,7 @@ if config["user"] in [None, ""]:
     showerror(title="Error", message="Missing config values, exiting...")
     exit()
 elif OS != "Windows":
-    showerror(title="Error, Not Supported", description="The ACN Notification is only supported on Windows, for support"
+    showerror(title="Error, Not Supported", description="ACN Notification is only supported on Windows, for support"
                                                         " in other operating systems, use ACN Dialog.")
     exit()
 else:
