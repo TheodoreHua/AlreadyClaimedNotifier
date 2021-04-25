@@ -43,7 +43,7 @@ those who don't want to summon an angry mod...
 Once you're done, just navigate to the folder where `AlreadyClaimedNotifier.pyw` is and run the file. You might run with an IDE you have
 installed, or simply run itself, or you can run it from the command line. On Windows, you do it like this: 
 `python AlreadyClaimedNotifier.pyw`. The application doesn't have a window and instead runs in the background, you can
-see if it's running by looking at the tray and looking for the (horrible drawn) [icon](#icon). You can close the 
+see if it's running by looking at the tray and looking for the (horribly drawn) [icon](#icon). You can close the 
 program by right-clicking the icon and clicking Exit Program. If this doesn't work, terminate it in Task Manager.
 
 ## Other Instructions
