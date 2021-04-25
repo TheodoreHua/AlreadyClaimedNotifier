@@ -34,7 +34,7 @@ def callback():
                                          description="WARNING: Post with title {} has already been claimed! Click 'Yes' to open"
                                                      " the page".format(submission.title))
                     if open_link:
-                        wbopen(submission.permalink)
+                        wbopen("www.reddit.com" + submission.permalink)
                 checked_entries.append(comment.id)
         sleep(config["delay"])
 

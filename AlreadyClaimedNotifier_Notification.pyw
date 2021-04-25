@@ -31,7 +31,7 @@ def callback():
                                      "WARNING: Post with title {} has already been claimed! Click this notification to open"
                                      " the page".format(submission.title), duration=config["notification_duration"],
                                      icon_path=FILE_DIRECTORY + "/icon.ico", callback_on_click=
-                                     lambda link=submission.permalink: wbopen(link))
+                                     lambda link=submission.permalink: wbopen("www.reddit.com" + link))
                 checked_entries.append(comment.id)
         sleep(config["delay"])
 
