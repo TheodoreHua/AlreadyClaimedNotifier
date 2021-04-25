@@ -33,7 +33,7 @@ def main():
     config.read(DATA_PATH + "/praw.ini")
     client_id = config["credentials"]["client_id"]
     client_secret = config["credentials"]["client_secret"]
-    scopes = ["privatemessages"]
+    scopes = ["privatemessages", "read"]
 
     reddit = praw.Reddit(
         client_id=client_id.strip(),
