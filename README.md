@@ -77,7 +77,7 @@ fine if you leave `username`, `password`, and `refresh_token` blank.), it should
 automatically, if not, you'll have to manually click the link. Follow the flow on Reddit and once it's done, it should 
 automatically fill in the values for you behind the scene. If you get an error saying `invalid redirect_uri parameter`,
 make sure you have `http://localhost:9575` set as the redirect uri in the reddit app (exactly that). If you get an 
-output saying that it was not succesfully entered automatically, you'll have to copy & paste all of the lines in the 
+output saying that it was not succesfully entered automatically, you'll have to copy & paste all the lines in the 
 output (except the notice) and paste it into the `praw.ini` file, deleting everything that was there originally.
 
 ## Icon
@@ -104,7 +104,7 @@ the file).
 
 #### Can I use this to get a reply for the bot can't find my transcription?
 Yes, you can add the can't find a transcript reply following the 
-[instructions](#can-i-add-more-variants-of-replies-to-check-for). Note the notification will still warn you about the 
+[instructions](#can-i-add-more-variants-of-replies-to-check-for). Note that the notification will still warn you about the 
 post being already claimed instead of saying that it didn't detect your transcription, but it still works in that it 
 sends you a notification. I may add a separate feature that checks for that itself and gives a more appropriate warning,
 however that's a low priority feature as it still works using this method.
