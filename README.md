@@ -54,7 +54,7 @@ Once you're done, just navigate to the folder where `AlreadyClaimedNotifier_Noti
 itself, or you can run it from the command line. On Windows, you do it like this: 
 `python AlreadyClaimedNotifier_Notification.pyw` or `python AlreadyClaimedNotifier_Dialog.pyw`. The application doesn't 
 have a window and instead runs in the background, you can see if it's running by looking at the tray and looking for the
-(horribly drawn) [icon](#icon). You can close the program by right-clicking the icon and clicking Exit Program. If this 
+[icon](#icon). You can close the program by right-clicking the icon and clicking Exit Program. If this 
 doesn't work, terminate it in Task Manager.
 
 ## Other Instructions
@@ -82,15 +82,11 @@ output (except the notice) and paste it into the `praw.ini` file, deleting every
 
 ## Icon
 
+**Credits to [@chakeson](https://github.com/chakeson) for making the icon**
+
 ![Program Icon](icon.png)
 
 ## FAQ
-
-#### That icon is horrible, can I suggest another one?
-
-Yes....please...anything...
-
-[Attach one (using a link) here, and I'll swap it out](https://github.com/TheodoreHua/AlreadyClaimedNotifier/issues/1)
 
 #### Can I add more variants of replies to check for?
 Yes, you can go to the subfolder `data/replies` 
