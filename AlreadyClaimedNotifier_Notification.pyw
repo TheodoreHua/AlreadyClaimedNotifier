@@ -27,9 +27,9 @@ def callback():
     while True:
         for comment in reddit.inbox.comment_replies():
             if comment.id not in checked_entries:
-                if comment.author.name == "transcribersofreddit":
+                if comment.author.name == "transcribersofreddit" and time() - comment.created_utc >= 86400:
                     for r in claimed_reply:
-                        if comment.body in r and time() - r.created_utc >= 86400:
+                        if comment.body in r:
                             submission = comment.submission
                             toast.show_toast("POST IS ALREADY CLAIMED",
                                              "WARNING: Post with title {} has already been claimed! Click this notification to open"
