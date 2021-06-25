@@ -13,7 +13,7 @@ from tkinter.messagebox import showerror
 home = expanduser("~")
 PLATFORM_LOCATIONS = {"linux": ".config",
                       "darwin": ".config"}
-VERSION = "1.0.1"
+VERSION = "1.1.1"
 FILE_DIRECTORY = dirname(abspath(__file__))
 
 if sysplatform.startswith("win"):
