@@ -12,6 +12,10 @@
 **This is an unofficial program and is not officially endorsed by the Transcribers of Reddit; they are in no way
 involved with this program and are not liable for any matters relating to it.**
 
+*This program serves to assist you by sending you notifications when the post you claimed was already claimed. You
+should not solely rely on this program and continue to be cautious when claiming and finishing posts. I take no liablity
+for any issues that happen as a result of using this program*
+
 Also known as ACN, this program sends a notification to the user when it detects a comment reply stating that the post
 their doing has already been claimed. It is designed with r/TranscribersOfReddit transcribers in mind; specifically
 those who don't want to summon an angry mod...
