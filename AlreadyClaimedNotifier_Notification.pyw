@@ -5,7 +5,7 @@
 # ------------------------------------------------------------------------------
 
 import os
-from time import sleep
+from time import sleep, time
 from tkinter import Tk
 from tkinter.messagebox import showerror as _showerror, askyesno as _askyesno
 from webbrowser import open as wbopen
@@ -29,7 +29,7 @@ def callback():
             if comment.id not in checked_entries:
                 if comment.author.name == "transcribersofreddit":
                     for r in claimed_reply:
-                        if comment.body in r:
+                        if comment.body in r and time() - r.created_utc >= 86400:
                             submission = comment.submission
                             toast.show_toast("POST IS ALREADY CLAIMED",
                                              "WARNING: Post with title {} has already been claimed! Click this notification to open"
