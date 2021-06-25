@@ -5,7 +5,7 @@
 # ------------------------------------------------------------------------------
 
 import os
-from time import sleep
+from time import sleep, time
 from tkinter import Tk
 from tkinter.messagebox import showerror as _showerror, askyesno as _askyesno
 from webbrowser import open as wbopen
@@ -30,7 +30,7 @@ def callback():
     while True:
         for comment in reddit.inbox.comment_replies():
             if comment.id not in checked_entries:
-                if comment.author.name == "transcribersofreddit":
+                if comment.author.name == "transcribersofreddit" and time() - comment.created_utc < 86400:
                     for r in claimed_reply:
                         if comment.body in r:
                             submission = comment.submission
