@@ -18,6 +18,8 @@ from gvars import DATA_PATH
 config_defaults = {"delay": 10,
                    "user": "",
                    "update_check": True,
+                   "limit": 100,
+                   "dialog": True,
                    "checks": {"already_claimed": True}}
 
 DEFAULT_REPLIES = [
@@ -89,7 +91,7 @@ def assert_data():
                         else:
                             missing_subs[needed_key] = [needed_key_2]
         if len(missing_keys) > 0 or len(missing_subs) > 0:
-            with open(DATA_PATH + "/config.ini", "w") as f:
+            with open(DATA_PATH + "/config.json", "w") as f:
                 new_data = oldconfig.copy()
                 for missing_key in missing_keys:
                     new_data[missing_key] = config_defaults[missing_key]

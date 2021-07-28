@@ -63,11 +63,12 @@ def main():
     # Mainloop
     try:
         while True:
-            # noinspection PyUnboundLocalVariable
-            with alive_bar(len(reddit.inbox.comment_replies())) as bar:
-                for comment in reddit.inbox.comment_replies():
-                    if comment.id not in checked_entries and comment.author.name == "transcribersofreddit" \
-                            and time() - comment.created_utc < 86400:
+            print("Starting check with a limit of {}".format(config["limit"]))
+            with alive_bar(config["limit"]) as bar:
+                # noinspection PyUnboundLocalVariable
+                for comment in reddit.inbox.comment_replies(limit=config["limit"]):
+                    if comment.id not in checked_entries and type(comment.author) is not type(None) and \
+                            comment.author.name == "transcribersofreddit" and time() - comment.created_utc < 86400:
                         if config["checks"]["already_claimed"]:
                             # noinspection PyUnboundLocalVariable
                             for r in claimed_replies:
@@ -84,6 +85,7 @@ def main():
                                           .format(submission.title, submission.permalink))
                     checked_entries.append(comment.id)
                     bar()
+            print("Checking completed, waiting {} seconds before next check".format(config["delay"]))
             file_checked(checked_entries)
             sleep(config["delay"])
     except KeyboardInterrupt:
