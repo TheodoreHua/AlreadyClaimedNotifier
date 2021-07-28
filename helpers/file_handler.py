@@ -15,10 +15,10 @@ from os.path import isfile, isdir, join
 
 from gvars import DATA_PATH
 
-CONFIG_VALUES = {"delay": "10",
-                 "user": "Username",
-                 "notification_duration": "15",
-                 "update_check": "1"}  #TODO: Default config outdated
+config_defaults = {"delay": 10,
+                   "user": "",
+                   "update_check": True,
+                   "checks": {"already_claimed": True}}
 
 DEFAULT_REPLIES = [
 """I'm sorry, but it looks like someone else has already claimed this post! You can check in with them to see if they need any help, but otherwise I suggest sticking around to see if another post pops up here in a little bit.
@@ -43,15 +43,8 @@ def get_praw():
 
 
 def get_config():
-    config = configparser.ConfigParser()
-    config.read(DATA_PATH + "/config.ini")
-    cfg = dict(config["CONFIG"])
-    for name, value in cfg.items():
-        if name in ["delay", "notification_duration"]:
-            cfg[name] = int(value)
-        elif name in ["update_check"]:
-            cfg[name] = bool(int(value))
-    return cfg
+    with open(DATA_PATH + "/config.json", "r") as f:
+        return json.load(f)
 
 
 def get_checked():
@@ -78,31 +71,32 @@ def assert_data():
         mkdir(DATA_PATH)
     if not isdir(DATA_PATH + "/data"):
         mkdir(DATA_PATH + "/data")
-    if not isfile(DATA_PATH + "/config.ini"):
-        config = configparser.ConfigParser(allow_no_value=True, comment_prefixes=("#", "l"))
-        config["CONFIG"] = CONFIG_VALUES
-        config["notes"] = {}
-        config.set("notes", "; Fill in the above values according to the README")
-        with open(DATA_PATH + "/config.ini", "w") as f:
-            config.write(f)
+    if not isfile(DATA_PATH + "/config.json"):
+        with open(DATA_PATH + "/config.json", "w") as f:
+            json.dump(config_defaults, f)
     else:
         oldconfig = get_config()
         missing_keys = []
-        for needed_key in CONFIG_VALUES.keys():
+        missing_subs = {}
+        for needed_key in config_defaults.keys():
             if needed_key not in oldconfig.keys():
                 missing_keys.append(needed_key)
-        if len(missing_keys) > 0:
+            elif type(needed_key) is dict:
+                for needed_key_2 in config_defaults[needed_key]:
+                    if needed_key_2 not in oldconfig[needed_key].keys():
+                        if needed_key in missing_subs:
+                            missing_subs[needed_key].append(needed_key_2)
+                        else:
+                            missing_subs[needed_key] = [needed_key_2]
+        if len(missing_keys) > 0 or len(missing_subs) > 0:
             with open(DATA_PATH + "/config.ini", "w") as f:
-                new_data = {i:str(j) if i not in ["update_check"] else "1" if j else "0" for i, j in oldconfig.items()}
+                new_data = oldconfig.copy()
                 for missing_key in missing_keys:
-                    # noinspection PyTypeChecker
-                    new_data[missing_key] = CONFIG_VALUES[missing_key]
-                config = configparser.ConfigParser(allow_no_value=True, comment_prefixes=("#", "l"))
-                # noinspection PyTypeChecker
-                config["CONFIG"] = new_data
-                config["notes"] = {}
-                config.set("notes", "; Fill in the above values according to the README")
-                config.write(f)
+                    new_data[missing_key] = config_defaults[missing_key]
+                for missing_sub, keys in missing_subs.items():
+                    for i in keys:
+                        new_data[missing_sub][i] = config_defaults[missing_sub][i]
+                json.dump(new_data, f)
     if not isfile(DATA_PATH + "/praw.ini"):
         config = configparser.ConfigParser(allow_no_value=True, comment_prefixes=("#", ";"))
         config["credentials"] = {"client_id": "",
