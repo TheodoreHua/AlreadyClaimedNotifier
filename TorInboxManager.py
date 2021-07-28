@@ -97,5 +97,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if len(vars(args)) < 1:
+        print("Terminate the program using Ctrl + C")
         main()
 
