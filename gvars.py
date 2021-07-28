@@ -18,7 +18,7 @@ FILE_DIRECTORY = dirname(abspath(__file__))
 
 if sysplatform.startswith("win"):
     OS = "Windows"
-    DATA_PATH = environ["APPDATA"] + "\\AlreadyClaimedNotifier"
+    DATA_PATH = environ["APPDATA"] + "\\TorInboxManager"
 else:
     if sysplatform.startswith("linux"):
         OS = "Linux"
@@ -28,4 +28,4 @@ else:
         Tk().withdraw()
         showerror("Unsupported Operating System", sysplatform + " is not supported")
         exit()
-    DATA_PATH = home + "/" + PLATFORM_LOCATIONS[sysplatform] + "/AlreadyClaimedNotifier"
+    DATA_PATH = home + "/" + PLATFORM_LOCATIONS[sysplatform] + "/TorInboxManager"

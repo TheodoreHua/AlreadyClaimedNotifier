@@ -1,7 +1,6 @@
 praw~=7.1.0
 configparser~=5.0.1
 packaging~=20.8
-pystray~=0.17.3
-win10toast-click~=0.1.2
-Pillow~=8.2.0
+alive-progress~=1.6.2
+notify-py~=0.3.3
 requests~=2.25.1

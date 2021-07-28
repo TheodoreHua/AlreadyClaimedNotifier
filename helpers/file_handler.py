@@ -18,7 +18,7 @@ from gvars import DATA_PATH
 CONFIG_VALUES = {"delay": "10",
                  "user": "Username",
                  "notification_duration": "15",
-                 "update_check": "1"}
+                 "update_check": "1"}  #TODO: Default config outdated
 
 DEFAULT_REPLIES = [
 """I'm sorry, but it looks like someone else has already claimed this post! You can check in with them to see if they need any help, but otherwise I suggest sticking around to see if another post pops up here in a little bit.
@@ -59,7 +59,7 @@ def get_checked():
         return json.load(f)
 
 
-def get_reply():
+def get_replies():
     reply_list = []
     for i in [j for j in listdir(DATA_PATH + "/data/replies") if isfile(join(DATA_PATH + "/data/replies", j))]:
         with open(DATA_PATH + "/data/replies/" + i, "r") as k:
