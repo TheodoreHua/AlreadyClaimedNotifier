@@ -52,8 +52,8 @@ def main():
             if version.parse(resp_js["tag_name"][1:]) > version.parse(VERSION):
                 # Ask user whether or not they want to open the releases page
                 yn_resp = askyesno("New Version",
-                                   "A new version ({}) is available.\n\nPress yes to open page and no to ignore.\nUpdate "
-                                   "checking can be disabled in config.".format(resp_js["tag_name"]))
+                                   "A new version ({}) is available.\n\nPress yes to open page and no to ignore.\n"
+                                   "Update checking can be disabled in config.".format(resp_js["tag_name"]))
                 if yn_resp:
                     wbopen("https://github.com/TheodoreHua/AlreadyClaimedNotifier/releases/latest")
         else:
@@ -79,8 +79,8 @@ def main():
                                                 .format(submission.title)):
                                             wbopen("www.reddit.com" + submission.permalink)
                                     else:
-                                        notify(notifier, "Already Claimed", "{} is already claimed, check the CLI for the link"
-                                               .format(submission.title))
+                                        notify(notifier, "Already Claimed", "{} is already claimed, check the CLI for "
+                                                                            "the link".format(submission.title))
                                     print("Already claimed post found ({}): https://www.reddit.com/{}"
                                           .format(submission.title, submission.permalink))
                     checked_entries.append(comment.id)
@@ -99,4 +99,3 @@ if __name__ == "__main__":
     if len(vars(args)) < 1:
         print("Terminate the program using Ctrl + C")
         main()
-

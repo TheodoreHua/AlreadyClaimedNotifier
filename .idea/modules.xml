@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AlreadyClaimedNotifier.iml" filepath="$PROJECT_DIR$/.idea/AlreadyClaimedNotifier.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TorInboxManager.iml" filepath="$PROJECT_DIR$/.idea/TorInboxManager.iml" />
     </modules>
   </component>
 </project>
