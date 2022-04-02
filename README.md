@@ -1,6 +1,6 @@
 # Already Claimed Notifier
 
-[![Actively Developed](https://img.shields.io/badge/Maintenance%20Level-Actively%20Developed-brightgreen.svg)](https://github.com/TheodoreHua/MaintenanceLevels#actively-developed)
+[![Inactively Maintained](https://img.shields.io/badge/Maintenance%20Level-Inactively%20Maintained-yellow.svg)](https://github.com/TheodoreHua/MaintenanceLevels#inactively-maintained)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/theodorehuadev@gmail.com)  
 [![GitHub issues](https://img.shields.io/github/issues/TheodoreHua/AlreadyClaimedNotifier)](https://github.com/TheodoreHua/AlreadyClaimedNotifier/issues)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/TheodoreHua/AlreadyClaimedNotifier)
