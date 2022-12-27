@@ -1,3 +1,7 @@
+**As the bot no longer allows you to complete the post if you aren't the one who claimed it, there's no reason for this program to exist anymore. Hence, this repository has been archived.**
+
+---
+
 # Already Claimed Notifier
 
 [![Inactively Maintained](https://img.shields.io/badge/Maintenance%20Level-Inactively%20Maintained-yellow.svg)](https://github.com/TheodoreHua/MaintenanceLevels#inactively-maintained)
